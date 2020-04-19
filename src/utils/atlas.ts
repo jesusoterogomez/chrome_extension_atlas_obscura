@@ -1,4 +1,4 @@
-import { BASE_URL, FETCH_INTERVAL, PLACES_LIST_URL } from "Constants";
+import { BASE_URL, PLACES_FETCH_INTERVAL, PLACES_LIST_URL } from "Constants";
 import { Place, PlacesJSONContent } from "Types";
 import { getStorage, setStorage, KEYS } from "utils/storage";
 import { differenceInHours } from "date-fns";
@@ -43,7 +43,7 @@ const getSlugs = async () => {
         new Date()
     );
 
-    if (hoursSinceLastFetch >= FETCH_INTERVAL) {
+    if (hoursSinceLastFetch >= PLACES_FETCH_INTERVAL) {
         return await fetchSlugs();
     }
 
@@ -66,19 +66,23 @@ const getImageUrl = (url: string): string => {
 };
 
 const fetchSlugs = async () => {
-    const response = await fetch(PLACES_LIST_URL);
-    const places: PlacesJSONContent = await response.json();
+    try {
+        const response = await fetch(PLACES_LIST_URL);
+        const places: PlacesJSONContent = await response.json();
 
-    // Store time when the list was fetched.
-    await setStorage(KEYS.PLACES_LIST_FETCH_TIMESTAMP, Date.now());
+        // Store time when the list was fetched.
+        await setStorage(KEYS.PLACES_LIST_FETCH_TIMESTAMP, Date.now());
 
-    // Store list of places
-    await setStorage(KEYS.PLACES_LIST, places.slugs);
+        // Store list of places
+        await setStorage(KEYS.PLACES_LIST, places.slugs);
 
-    // @todo: Reenable if it's proven that every new day, the array order completely changes. Otherwise resetting the index might make the users see the same images at the start of every day.
-    // await initIndex(); // Reset index when fetching new slugs
+        // @todo: Reenable if it's proven that every new day, the array order completely changes. Otherwise resetting the index might make the users see the same images at the start of every day.
+        // await initIndex(); // Reset index when fetching new slugs
 
-    return places.slugs;
+        return places.slugs;
+    } catch (e) {
+        return localSlugsFile.slugs;
+    }
 };
 
 const getCachedSlugs = async (): Promise<PlacesJSONContent["slugs"]> => {

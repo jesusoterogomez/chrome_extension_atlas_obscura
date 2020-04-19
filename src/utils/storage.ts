@@ -15,9 +15,21 @@ export enum KEYS {
      * Timestamp of when the list of places was last fetched
      */
     PLACES_LIST_FETCH_TIMESTAMP = "PLACES_LIST_FETCH_TIMESTAMP",
+    /**
+     * Cached weather data
+     */
+    WEATHER_DATA = "WEATHER_DATA",
+    /**
+     * Weather data fetch timestamp
+     */
+    WEATHER_DATA_FETCH_TIMESTAMP = "WEATHER_DATA_FETCH_TIMESTAMP",
 }
 
 export const setStorage = (key: KEYS, value: any) => {
+    if (!chrome.storage) {
+        return localStorage.setItem(key, JSON.stringify(value));
+    }
+
     return new Promise((resolve) => {
         chrome.storage.local.set(
             {
@@ -31,6 +43,15 @@ export const setStorage = (key: KEYS, value: any) => {
 };
 
 export const getStorage = (key: KEYS) => {
+    if (!chrome.storage) {
+        const data = localStorage.getItem(key);
+        if (data) {
+            return JSON.parse(data);
+        }
+
+        return undefined;
+    }
+
     return new Promise((resolve) => {
         chrome.storage.local.get([key], (result) => {
             if (key in result) {
