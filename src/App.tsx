@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { Place } from "Types";
 import { motion, AnimationProps } from "framer-motion";
-import { getPlaceData, Place } from "./utils/atlas";
+import { getPlaceData } from "./utils/atlas";
+// import { getPlaceData } from "__mocks__/atlas"; // Uncomment when running app through npm start
+
 import "./App.scss";
+
+import CurrentWeather from "components/CurrentWeather";
 
 const App = () => {
     const [imageSrc, setImageSrc] = useState<string>();
-    // const [loading, setLoading] = useState(false);
     const [data, setData] = useState<Place>();
 
     useEffect(() => {
         fetchData();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchData = async () => {
-        // setLoading(true);
         const placeData = await getPlaceData();
         loadImage(placeData.background_image_url);
 
@@ -63,7 +68,7 @@ const App = () => {
                     scale: 1,
                 }}
             >
-                <div className="default-backdrop-image"></div>
+                <div className="default-backdrop-image" />
             </motion.div>
 
             {/* Display image when fully loaded */}
@@ -84,6 +89,8 @@ const App = () => {
 
             {imageLoaded && data && (
                 <>
+                    <CurrentWeather />
+
                     <motion.div
                         className="gradient-overlay"
                         initial="hidden"
