@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
+$default-background-color: #1b624f;
+
+html {
+    background-color: $default-background-color;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+    font-family: "Freight Pro";
+    src: url(/fonts/FreigTexProBookWeb.woff2);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+    font-family: "Platform Regular";
+    src: url(/fonts/Platform-Regular-Web.woff2);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.page-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.default-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $default-background-color;
+
+    &-image {
+        width: 100%;
+        height: 100%;
+        background: url(/topography.png);
+        background-size: 425px;
+        opacity: 0.3;
+    }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.image-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-size: cover;
+    align-items: flex-start;
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+
+    > img {
+        right: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        bottom: 0;
+    }
+}
+
+.text-container {
+    display: inline-block;
+    position: absolute;
+    bottom: 43px;
+    left: 42px;
+    width: calc(((100% - 48px) / 12) * 10);
+    color: white;
+    text-decoration: none;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    z-index: 10;
+
+    .location {
+        text-transform: uppercase;
+        font-family: "Platform Regular";
+        font-size: 16px;
+    }
+
+    .title {
+        font-family: "Platform Regular";
+        letter-spacing: 2px;
+        font-size: 60px;
+        margin: 0;
+    }
+
+    .subtitle {
+        font-family: "Freight Pro";
+        font-size: 22px;
+    }
+}
+
+.gradient-overlay {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    top: 25%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.4),
+            transparent 80%
+        ),
+        linear-gradient(to top, rgba(88, 88, 88, 0.25) 50%, transparent 85%);
 }

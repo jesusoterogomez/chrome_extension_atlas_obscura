@@ -1,26 +1,115 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
+import { motion, AnimationProps } from "framer-motion";
+import { getPlaceData, Place } from "./utils/atlas";
 import "./App.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [imageSrc, setImageSrc] = useState<string>();
+    // const [loading, setLoading] = useState(false);
+    const [data, setData] = useState<Place>();
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        // setLoading(true);
+        const placeData = await getPlaceData();
+        loadImage(placeData.background_image_url);
+
+        setData(placeData);
+    };
+
+    // Lazy load image
+    const loadImage = (src: string) => {
+        let image = new Image();
+        image.src = src;
+        image.onload = () => {
+            setImageSrc(src);
+        };
+    };
+
+    const imageLoaded = !!imageSrc;
+
+    // @see: https://www.framer.com/api/motion/animation/
+    const text_container: AnimationProps["variants"] = {
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 1,
+                delayChildren: 0.3,
+                staggerChildren: 0.1,
+            },
+        },
+        hidden: { opacity: 0 },
+    };
+
+    const text_item: AnimationProps["variants"] = {
+        visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+        hidden: { opacity: 0, x: -50, transition: { duration: 0.5 } },
+    };
+
+    return (
+        <div className="page-container">
+            <motion.div
+                className="default-backdrop"
+                animate={{
+                    opacity: 1,
+                    scale: 1.1,
+                }}
+                transition={{ duration: 1.5 }}
+                style={{
+                    opacity: 0,
+                    scale: 1,
+                }}
+            >
+                <div className="default-backdrop-image"></div>
+            </motion.div>
+
+            {/* Display image when fully loaded */}
+            {imageLoaded && (
+                <motion.div
+                    initial={true}
+                    className="image-container"
+                    animate={{
+                        opacity: 1,
+                    }}
+                    transition={{ duration: 0.8 }}
+                    style={{
+                        opacity: 0,
+                        backgroundImage: `url(${imageSrc})`,
+                    }}
+                />
+            )}
+
+            {imageLoaded && data && (
+                <>
+                    <motion.div
+                        className="gradient-overlay"
+                        initial="hidden"
+                        animate="visible"
+                        variants={text_container}
+                    />
+                    <motion.div
+                        className="text-container"
+                        initial="hidden"
+                        animate="visible"
+                        variants={text_container}
+                    >
+                        <motion.p className="location" variants={text_item}>
+                            {data?.location}
+                        </motion.p>
+                        <motion.h1 className="title" variants={text_item}>
+                            {data?.title}
+                        </motion.h1>
+                        <motion.h2 className="subtitle" variants={text_item}>
+                            {data?.subtitle}
+                        </motion.h2>
+                    </motion.div>
+                </>
+            )}
+        </div>
+    );
+};
 
 export default App;
