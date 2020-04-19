@@ -1,0 +1,30 @@
+.weather-container {
+    display: inline-block;
+    position: absolute;
+    bottom: 43px;
+    right: 42px;
+    color: white;
+    text-decoration: none;
+    font-family: "Platform Regular";
+    -webkit-font-smoothing: antialiased;
+    z-index: 10;
+    text-align: right;
+}
+
+.weather-icon {
+    position: relative;
+    top: 14px;
+    right: 4px;
+}
+
+.weather-temperature {
+    margin: 0;
+    font-size: 32px;
+    margin-bottom: 0.5em;
+}
+
+.weather-description {
+    font-size: 24px;
+    margin-top: 0.5em;
+    text-transform: capitalize;
+}
