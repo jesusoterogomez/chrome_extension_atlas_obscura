@@ -4,7 +4,7 @@ This project was based on the official atlas obscura new tab extension:
 ### What is it?
 An extension that replaces your 
 
-<img src="https://media.giphy.com/media/JOdALdLM0W8XaQP4Cg/giphy.gif" >
+<img src="https://media.giphy.com/media/QtvYyMtDmITWzdjezx/giphy.gif" >
 
 ### Why?
 
