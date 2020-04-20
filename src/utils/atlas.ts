@@ -39,11 +39,11 @@ const getSlugs = async () => {
     // If the time since last fetch has been longer than the fetch interval.
     // fetch slugs json again.
     const hoursSinceLastFetch = differenceInHours(
-        new Date(timestamp),
-        new Date()
+        new Date(),
+        new Date(timestamp)
     );
 
-    if (hoursSinceLastFetch >= PLACES_FETCH_INTERVAL) {
+    if (Math.abs(hoursSinceLastFetch) >= PLACES_FETCH_INTERVAL) {
         return await fetchSlugs();
     }
 

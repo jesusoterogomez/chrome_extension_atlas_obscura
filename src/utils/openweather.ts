@@ -25,11 +25,11 @@ const shouldUseWeatherCache = async () => {
 
     // If the time since last fetch has been longer than the fetch interval, don't use cache.
     const minutesSinceLastFetch = differenceInMinutes(
-        new Date(timestamp),
-        new Date()
+        new Date(),
+        new Date(timestamp)
     );
 
-    if (minutesSinceLastFetch >= WEATHER_FETCH_INTERVAL) {
+    if (Math.abs(minutesSinceLastFetch) >= WEATHER_FETCH_INTERVAL) {
         return false;
     }
 
@@ -41,6 +41,7 @@ const getCachedWeather = async () => {
 };
 
 export const getWeather = async (query: QueryParams) => {
+    console.log("get weather");
     if (await shouldUseWeatherCache()) {
         return getCachedWeather();
     }
