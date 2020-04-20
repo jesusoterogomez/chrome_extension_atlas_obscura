@@ -41,7 +41,6 @@ const getCachedWeather = async () => {
 };
 
 export const getWeather = async (query: QueryParams) => {
-    console.log("get weather");
     if (await shouldUseWeatherCache()) {
         return getCachedWeather();
     }
