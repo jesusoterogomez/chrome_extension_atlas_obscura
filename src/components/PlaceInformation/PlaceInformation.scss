@@ -27,6 +27,7 @@
 
     .subtitle {
         font-family: "Freight Pro";
+        line-height: 1.1;
         font-size: 22px;
     }
 
@@ -67,7 +68,7 @@ $css-arrow-glow-color: #d89962;
 .hover-indicator {
     transition: all 0.3s ease;
     opacity: 0;
-    transform: translateX(-16px);
+    transform: translateX(-14px);
     position: relative;
     display: inline-block;
     height: 0.6em;
