@@ -1,0 +1,47 @@
+/**
+ * To rotate text vertically and align it to the bottom of the page
+ * we rotate the parent container with a right, bottom origin and
+ * match the right and height property to make the element be aligned
+ * with the right edge of the page.
+ */
+.image-attribution {
+    display: inline-block;
+    position: absolute;
+    z-index: 10;
+
+    height: 1rem;
+    right: 1rem;
+    bottom: 0;
+
+    transform: rotate(90deg);
+    transform-origin: right bottom;
+}
+
+/**
+ * The text is rotated, but we need to flip it so that
+ * it reads from bottom to top. This is really difficult to do with
+ * transform and origin properties on the parent, so we just flip
+ * the child content with the scale property
+ */
+.image-attribution-link {
+    transition: opacity 0.3s ease;
+
+    opacity: 0.3;
+    display: block;
+    position: relative;
+
+    right: 14px;
+    top: 10px;
+    transform: scale(-1, -1);
+
+    color: white;
+    font-size: 12px;
+    font-family: "Platform Regular";
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+
+    &:hover {
+        opacity: 1;
+    }
+}

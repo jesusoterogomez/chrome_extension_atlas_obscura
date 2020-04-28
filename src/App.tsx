@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { fadeIn } from "Animations";
 import CurrentWeather from "components/CurrentWeather";
 import PlaceInformation from "components/PlaceInformation";
-import { getPlaceData } from "./utils/atlas";
-// import { getPlaceData } from "__mocks__/atlas"; // Uncomment when running app through npm start
+// import { getPlaceData } from "./utils/atlas";
+import { getPlaceData } from "__mocks__/atlas"; // Uncomment when running app through npm start
 
 import "./App.scss";
+import ImageAttribution from "components/ImageAttribution";
 
 const App = () => {
     const [imageSrc, setImageSrc] = useState<string>();
@@ -55,31 +56,38 @@ const App = () => {
 
             {/* Display image when fully loaded */}
             {imageLoaded && (
-                <motion.div
-                    initial={true}
-                    className="image-container"
-                    animate={{
-                        opacity: 1,
-                    }}
-                    transition={{ duration: 0.8 }}
-                    style={{
-                        opacity: 0,
-                        backgroundImage: `url(${imageSrc})`,
-                    }}
-                />
+                <>
+                    <motion.div
+                        initial={true}
+                        className="image-container"
+                        animate={{
+                            opacity: 1,
+                        }}
+                        transition={{ duration: 0.8 }}
+                        style={{
+                            opacity: 0,
+                            backgroundImage: `url(${imageSrc})`,
+                        }}
+                    />
+                    {data && (
+                        <ImageAttribution
+                            attribution={data.image_attribution}
+                        />
+                    )}
+                </>
             )}
 
             {imageLoaded && data && (
                 <>
+                    <CurrentWeather />
+                    <PlaceInformation place={data} />
+
                     <motion.div
                         className="gradient-overlay"
                         initial="hidden"
                         animate="visible"
                         variants={fadeIn}
                     />
-
-                    <CurrentWeather />
-                    <PlaceInformation place={data} />
                 </>
             )}
         </div>

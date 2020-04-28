@@ -3,10 +3,9 @@
     position: absolute;
     bottom: 43px;
     left: 42px;
-    width: calc(((100% - 140px) / 12) * 10);
+    max-width: calc(((100% - 140px) / 12) * 10);
     color: white;
     text-decoration: none;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     z-index: 10;
 
@@ -29,5 +28,90 @@
     .subtitle {
         font-family: "Freight Pro";
         font-size: 22px;
+    }
+
+    &:hover {
+        .hover-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+// Animations
+
+@mixin animation-pulse($animationName, $color) {
+    @keyframes #{$animationName} {
+        0% {
+            box-shadow: 0 0 0 0 transparentize($color, 0.2);
+        }
+        70% {
+            box-shadow: 0 0 0 10px transparentize($color, 1);
+        }
+        100% {
+            box-shadow: 0 0 8px 0 transparentize($color, 1);
+        }
+    }
+}
+
+$css-arrow-bg-color: #bd8049;
+$css-arrow-color: white;
+
+/**
+ * Color adjusted from the official atlas obscura brown (#bd8049).
+ * For better visibility in contrast with background image while still staying "in brand"
+ */
+$css-arrow-glow-color: #d89962;
+@include animation-pulse("button-pulse", $css-arrow-glow-color);
+
+.hover-indicator {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-16px);
+    position: relative;
+    display: inline-block;
+    height: 0.6em;
+    width: 0.6em;
+    background: $css-arrow-bg-color;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-left: 0.2em;
+    animation: button-pulse 1.5s infinite;
+}
+
+.css-icon-arrow {
+    height: 3px;
+    width: 12px;
+    background: $css-arrow-color;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+
+    &:before {
+        content: "";
+        display: block;
+        height: 3px;
+        width: 10px;
+        background: $css-arrow-color;
+        position: absolute;
+        top: -1px;
+        left: 10px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        border-radius: 3px 0px 0px 3px;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        height: 3px;
+        width: 10px;
+        background: $css-arrow-color;
+        position: absolute;
+        top: 4px;
+        left: 10px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        border-radius: 3px 0px 0px 3px;
     }
 }
