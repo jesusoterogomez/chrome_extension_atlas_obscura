@@ -16,9 +16,14 @@ type QueryParams = {
     long?: string | number;
 };
 
-// Add REACT_APP_OPEN_WEATHER_API_KEY has to exist in .env.local file.
-// The .env.local file is gitignored must be generated during CI executions
+// Enter your Open Weather API key in the .env file
 const KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
+
+if (!KEY) {
+    console.error(
+        "Please add your OpenWeatherMap API Key (https://home.openweathermap.org/api_keys) to the .env file"
+    );
+}
 
 const shouldUseWeatherCache = async () => {
     const timestamp = (await getStorage(KEYS.WEATHER_DATA_FETCH_TIMESTAMP)) as
@@ -67,11 +72,20 @@ export const getWeather = async (query: QueryParams) => {
         ...query,
     });
 
-    const response = await fetch(WEATHER_API_URL + params);
-    const weatherData = (await response.json()) as Weather;
+    try {
+        const response = await fetch(WEATHER_API_URL + params);
+        const weatherData = (await response.json()) as Weather;
 
-    await setStorage(KEYS.WEATHER_DATA, weatherData);
-    await setStorage(KEYS.WEATHER_DATA_FETCH_TIMESTAMP, Date.now());
+        if (response.status === 401) {
+            throw weatherData;
+        }
 
-    return weatherData;
+        await setStorage(KEYS.WEATHER_DATA, weatherData);
+        await setStorage(KEYS.WEATHER_DATA_FETCH_TIMESTAMP, Date.now());
+
+        return weatherData;
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
 };

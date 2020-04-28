@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Weather } from "Types";
 import { getPosition } from "utils/geolocation";
 import { getWeather } from "utils/openweather";
-import OpenWeatherIcon from "components/OpenWeatherIcon/OpenWeatherIcon";
+import OpenWeatherIcon from "components/OpenWeatherIcon";
 import "./CurrentWeather.scss";
 
 import { motion } from "framer-motion";
