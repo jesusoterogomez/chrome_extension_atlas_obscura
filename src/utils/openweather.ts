@@ -26,6 +26,7 @@ const shouldUseWeatherCache = async () => {
         | undefined;
 
     if (!timestamp) {
+        logger.log(`Weather data hasn't been fetched yet`);
         return false;
     }
 
@@ -42,6 +43,9 @@ const shouldUseWeatherCache = async () => {
         return false;
     }
 
+    logger.log(
+        `Weather data was last fetched ${minutesSinceLastFetch} minutes ago`
+    );
     return true;
 };
 

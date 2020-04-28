@@ -64,40 +64,6 @@ html {
     }
 }
 
-.text-container {
-    display: inline-block;
-    position: absolute;
-    bottom: 43px;
-    left: 42px;
-    width: calc(((100% - 140px) / 12) * 10);
-    color: white;
-    text-decoration: none;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    z-index: 10;
-
-    .location {
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        line-height: 1em;
-        text-transform: uppercase;
-        font-family: "Platform Regular";
-        font-size: 16px;
-    }
-
-    .title {
-        font-family: "Platform Regular";
-        letter-spacing: 2px;
-        font-size: 60px;
-        margin: 0;
-    }
-
-    .subtitle {
-        font-family: "Freight Pro";
-        font-size: 22px;
-    }
-}
-
 .gradient-overlay {
     display: block;
     position: fixed;

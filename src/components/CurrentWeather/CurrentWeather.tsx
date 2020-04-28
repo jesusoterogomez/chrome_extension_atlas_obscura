@@ -5,24 +5,8 @@ import { getWeather } from "utils/openweather";
 import OpenWeatherIcon from "components/OpenWeatherIcon/OpenWeatherIcon";
 import "./CurrentWeather.scss";
 
-import { motion, AnimationProps } from "framer-motion";
-
-const weather_container: AnimationProps["variants"] = {
-    visible: {
-        opacity: 1,
-        transition: {
-            duration: 1,
-            delayChildren: 0.3,
-            staggerChildren: 0.1,
-        },
-    },
-    hidden: { opacity: 0 },
-};
-
-const weather_item: AnimationProps["variants"] = {
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-    hidden: { opacity: 0, x: +50, transition: { duration: 0.5 } },
-};
+import { motion } from "framer-motion";
+import { fadeIn, fadeInFromRight } from "Animations";
 
 const CurrentWeather = () => {
     const [weather, setWeather] = useState<Weather | null>(null);
@@ -54,13 +38,19 @@ const CurrentWeather = () => {
             className="weather-container"
             initial="hidden"
             animate="visible"
-            variants={weather_container}
+            variants={fadeIn}
         >
-            <motion.h1 variants={weather_item} className="weather-temperature">
+            <motion.h1
+                variants={fadeInFromRight}
+                className="weather-temperature"
+            >
                 <OpenWeatherIcon icon={weatherCondition.icon} />
                 {Math.round(weather.main.temp)}°
             </motion.h1>
-            <motion.h2 variants={weather_item} className="weather-description">
+            <motion.h2
+                variants={fadeInFromRight}
+                className="weather-description"
+            >
                 {weatherCondition.description}
             </motion.h2>
         </motion.div>
