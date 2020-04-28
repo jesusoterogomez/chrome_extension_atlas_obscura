@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { fadeIn } from "Animations";
 import CurrentWeather from "components/CurrentWeather";
 import PlaceInformation from "components/PlaceInformation";
-// import { getPlaceData } from "./utils/atlas";
-import { getPlaceData } from "__mocks__/atlas"; // Uncomment when running app through npm start
+import { getPlaceData } from "./utils/atlas";
+// import { getPlaceData } from "__mocks__/atlas"; // Uncomment when running app through npm start
 
 import "./App.scss";
 import ImageAttribution from "components/ImageAttribution";
