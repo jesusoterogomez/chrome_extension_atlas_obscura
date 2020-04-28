@@ -2,7 +2,13 @@ import qs from "qs";
 import { Weather } from "Types";
 import { getStorage, KEYS, setStorage } from "./storage";
 import { differenceInMinutes } from "date-fns";
-import { WEATHER_FETCH_INTERVAL } from "Constants";
+import { logger } from "./logger";
+
+import {
+    WEATHER_FETCH_INTERVAL,
+    WEATHER_UNITS,
+    WEATHER_API_URL,
+} from "Constants";
 
 type QueryParams = {
     q?: any;
@@ -30,6 +36,9 @@ const shouldUseWeatherCache = async () => {
     );
 
     if (Math.abs(minutesSinceLastFetch) >= WEATHER_FETCH_INTERVAL) {
+        logger.log(
+            `Weather data was last fetched ${minutesSinceLastFetch} minutes ago`
+        );
         return false;
     }
 
@@ -42,18 +51,19 @@ const getCachedWeather = async () => {
 
 export const getWeather = async (query: QueryParams) => {
     if (await shouldUseWeatherCache()) {
+        logger.log("Using cached weather data");
         return getCachedWeather();
     }
 
-    const url = "https://api.openweathermap.org/data/2.5/weather?";
+    logger.log("Fetching weather data");
 
     const params = qs.stringify({
         appId: KEY,
-        units: "metric",
+        units: WEATHER_UNITS,
         ...query,
     });
 
-    const response = await fetch(url + params);
+    const response = await fetch(WEATHER_API_URL + params);
     const weatherData = (await response.json()) as Weather;
 
     await setStorage(KEYS.WEATHER_DATA, weatherData);
