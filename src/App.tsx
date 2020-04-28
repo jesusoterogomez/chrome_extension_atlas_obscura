@@ -69,16 +69,12 @@ const App = () => {
                             backgroundImage: `url(${imageSrc})`,
                         }}
                     />
-                    {data && (
-                        <ImageAttribution
-                            attribution={data.image_attribution}
-                        />
-                    )}
                 </>
             )}
 
             {imageLoaded && data && (
                 <>
+                    <ImageAttribution attribution={data.image_attribution} />
                     <CurrentWeather />
                     <PlaceInformation place={data} />
 
