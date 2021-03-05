@@ -23,4 +23,4 @@ With some free time on my hands, I decided to reverse engineer the project and r
 **Improvements:**
 - I made some minimal overall changes to the appearance
 - Animations are now smoother and staggered when necessary (When loading takes longer as expected, for example)
-- Added support for displaying weather in the current location _(a la Chromecast)_
+- Added support for displaying weather in the current location in the right lower corner _(a la Chromecast)_
