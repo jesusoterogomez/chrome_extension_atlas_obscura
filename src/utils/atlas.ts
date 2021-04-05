@@ -103,10 +103,9 @@ export const getPlaceData = async () => {
     const index = await getCurrentIndex();
     const { slug } = slugs[index % slugs.length];
 
+    await incrementIndex();
     const response = await fetch(BASE_URL + slug);
     const body: Place = await response.json();
-
-    await incrementIndex();
 
     // Return object with imageUrl.
     return {

@@ -83,6 +83,8 @@ export const getWeather = async (query: QueryParams) => {
         await setStorage(KEYS.WEATHER_DATA, weatherData);
         await setStorage(KEYS.WEATHER_DATA_FETCH_TIMESTAMP, Date.now());
 
+        logger.log("Weather data fetched");
+
         return weatherData;
     } catch (e) {
         console.error(e);
