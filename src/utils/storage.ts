@@ -23,6 +23,10 @@ export enum KEYS {
      * Weather data fetch timestamp
      */
     WEATHER_DATA_FETCH_TIMESTAMP = "WEATHER_DATA_FETCH_TIMESTAMP",
+    /**
+     * Whether the user has permanently dismissed the location prompt
+     */
+    LOCATION_DISMISSED = "LOCATION_DISMISSED",
 }
 
 export const setStorage = (key: KEYS, value: any) => {
