@@ -5,21 +5,27 @@
     "chrome_url_overrides": {
         "newtab": "index.html"
     },
-    "manifest_version": 2,
-    "content_security_policy": "script-src 'self'; object-src 'self';",
-    "icons": {
-        "128": "logo192.png",
-        "16": "logo192.png",
-        "48": "logo192.png"
+    "manifest_version": 3,
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self';"
     },
-    "permissions": [
-        "storage",
-        "geolocation",
+    "icons": {
+        "128": "atlas-obscura-logo.png",
+        "16": "atlas-obscura-logo.png",
+        "48": "atlas-obscura-logo.png"
+    },
+    "permissions": ["storage"],
+    "host_permissions": [
         "https://atlasobscura.com/*",
         "https://www.atlasobscura.com/*",
         "http://www.atlasobscura.com/*"
     ],
     "update_url": "https://clients2.google.com/service/update2/crx",
     "version": "1.0.0",
-    "web_accessible_resources": ["font/*.woff2", "js/*.json"]
+    "web_accessible_resources": [
+        {
+            "resources": ["font/*.woff2", "js/*.json"],
+            "matches": ["<all_urls>"]
+        }
+    ]
 }

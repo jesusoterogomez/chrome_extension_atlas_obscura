@@ -1,4 +1,4 @@
-export const getPosition = async (): Promise<Position> => {
+export const getPosition = async (): Promise<GeolocationPosition> => {
     return new Promise((resolve, reject) => {
         if (!navigator.geolocation.getCurrentPosition) {
             reject("Geolocation unavailable");

@@ -1,34 +1,34 @@
 import React from "react";
 
-import { ReactComponent as Icon01d } from "files/icons/openweathermap/01d.svg";
-import { ReactComponent as Icon01n } from "files/icons/openweathermap/01n.svg";
+import Icon01d from "files/icons/openweathermap/01d.svg?react";
+import Icon01n from "files/icons/openweathermap/01n.svg?react";
 
-import { ReactComponent as Icon02d } from "files/icons/openweathermap/02d.svg";
-import { ReactComponent as Icon02n } from "files/icons/openweathermap/02n.svg";
+import Icon02d from "files/icons/openweathermap/02d.svg?react";
+import Icon02n from "files/icons/openweathermap/02n.svg?react";
 
-import { ReactComponent as Icon03d } from "files/icons/openweathermap/03d.svg";
-import { ReactComponent as Icon03n } from "files/icons/openweathermap/03n.svg";
+import Icon03d from "files/icons/openweathermap/03d.svg?react";
+import Icon03n from "files/icons/openweathermap/03n.svg?react";
 
-import { ReactComponent as Icon04d } from "files/icons/openweathermap/04d.svg";
-import { ReactComponent as Icon04n } from "files/icons/openweathermap/04n.svg";
+import Icon04d from "files/icons/openweathermap/04d.svg?react";
+import Icon04n from "files/icons/openweathermap/04n.svg?react";
 
-import { ReactComponent as Icon09d } from "files/icons/openweathermap/09d.svg";
-import { ReactComponent as Icon09n } from "files/icons/openweathermap/09n.svg";
+import Icon09d from "files/icons/openweathermap/09d.svg?react";
+import Icon09n from "files/icons/openweathermap/09n.svg?react";
 
-import { ReactComponent as Icon10d } from "files/icons/openweathermap/10d.svg";
-import { ReactComponent as Icon10n } from "files/icons/openweathermap/10n.svg";
+import Icon10d from "files/icons/openweathermap/10d.svg?react";
+import Icon10n from "files/icons/openweathermap/10n.svg?react";
 
-import { ReactComponent as Icon11d } from "files/icons/openweathermap/11d.svg";
-import { ReactComponent as Icon11n } from "files/icons/openweathermap/11n.svg";
+import Icon11d from "files/icons/openweathermap/11d.svg?react";
+import Icon11n from "files/icons/openweathermap/11n.svg?react";
 
-import { ReactComponent as Icon13d } from "files/icons/openweathermap/13d.svg";
-import { ReactComponent as Icon13n } from "files/icons/openweathermap/13n.svg";
+import Icon13d from "files/icons/openweathermap/13d.svg?react";
+import Icon13n from "files/icons/openweathermap/13n.svg?react";
 
-import { ReactComponent as Icon50d } from "files/icons/openweathermap/50d.svg";
-import { ReactComponent as Icon50n } from "files/icons/openweathermap/50n.svg";
+import Icon50d from "files/icons/openweathermap/50d.svg?react";
+import Icon50n from "files/icons/openweathermap/50n.svg?react";
 
 type IconMap = {
-    [key: string]: any;
+    [key: string]: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
 const ICONS: IconMap = {
@@ -53,11 +53,16 @@ const ICONS: IconMap = {
 };
 
 const OpenWeatherIcon = ({ icon }: { icon: string }) => {
-    return React.cloneElement(ICONS[icon].render(), {
-        height: "48",
-        width: "48",
-        className: `weather-icon ${icon}`,
-    });
+    const IconComponent = ICONS[icon];
+    if (!IconComponent) return null;
+
+    return (
+        <IconComponent
+            height="48"
+            width="48"
+            className={`weather-icon ${icon}`}
+        />
+    );
 };
 
 export default OpenWeatherIcon;

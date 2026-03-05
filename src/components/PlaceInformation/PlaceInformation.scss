@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .place-information {
     display: inline-block;
     position: absolute;
@@ -44,13 +46,13 @@
 @mixin animation-pulse($animationName, $color) {
     @keyframes #{$animationName} {
         0% {
-            box-shadow: 0 0 0 0 transparentize($color, 0.2);
+            box-shadow: 0 0 0 0 color.adjust($color, $alpha: -0.2);
         }
         70% {
-            box-shadow: 0 0 0 10px transparentize($color, 1);
+            box-shadow: 0 0 0 10px color.adjust($color, $alpha: -1);
         }
         100% {
-            box-shadow: 0 0 8px 0 transparentize($color, 1);
+            box-shadow: 0 0 8px 0 color.adjust($color, $alpha: -1);
         }
     }
 }

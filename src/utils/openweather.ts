@@ -17,7 +17,7 @@ type QueryParams = {
 };
 
 // Enter your Open Weather API key in the .env file
-const KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
+const KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
 if (!KEY) {
     console.error(
