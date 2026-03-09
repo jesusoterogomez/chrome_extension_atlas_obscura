@@ -1,5 +1,5 @@
 {
-    "name": "Atlas Obsura - New Tab (Unofficial)",
+    "name": "Atlas Obscura - New Tab (Unofficial)",
     "description": "Discover a hidden wonder with each new tab.",
     "homepage_url": "https://atlasobscura.com",
     "chrome_url_overrides": {
@@ -20,12 +20,5 @@
         "https://www.atlasobscura.com/*",
         "http://www.atlasobscura.com/*"
     ],
-    "update_url": "https://clients2.google.com/service/update2/crx",
-    "version": "1.1.0",
-    "web_accessible_resources": [
-        {
-            "resources": ["font/*.woff2", "js/*.json"],
-            "matches": ["<all_urls>"]
-        }
-    ]
+    "version": "1.0.1"
 }
