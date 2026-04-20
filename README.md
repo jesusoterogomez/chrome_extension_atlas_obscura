@@ -3,7 +3,12 @@ This project was based on the official atlas obscura new tab extension:
 
 ### Installation
 
-Follow the steps in the latest release: https://github.com/jesusoterogomez/chrome_extension_atlas_obscura/releases
+
+<a href="https://chromewebstore.google.com/detail/atlas-obscura-new-tab-uno/jelcecgfofklkdnfobcahjpedjdldden">
+  <img height="70" alt="image" src="https://github.com/user-attachments/assets/5ff048db-f2c2-4bc2-a039-ce2bb40dc00c" />
+
+  <a href="https://chromewebstore.google.com/detail/atlas-obscura-new-tab-uno/jelcecgfofklkdnfobcahjpedjdldden">⬇️ Install Atlas Obscura Extension from <b>Chrome Web Store<b></a>
+</a>
 
 ### What is it?
 A Chrome extension that replaces your new tab page with a random place from Atlas Obscura
