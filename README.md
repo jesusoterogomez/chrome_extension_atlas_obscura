@@ -1,5 +1,4 @@
-This project was based on the official atlas obscura new tab extension:
-@see: https://chrome.google.com/webstore/detail/atlas-obscura-tabs/odbdedlpknlpnibidnmjcmlopgegggbi?hl=en
+This project was based on the official [(and now dead ☠️)](https://chrome.google.com/webstore/detail/atlas-obscura-tabs/odbdedlpknlpnibidnmjcmlopgegggbi?hl=en) atlas obscura new tab extension
 
 ### Installation
 
@@ -16,7 +15,12 @@ A Chrome extension that replaces your new tab page with a random place from Atla
 <img width="1277" alt="Screen Shot 2020-04-20 at 11 04 30 AM" src="https://user-images.githubusercontent.com/5709736/79734316-cfe9e780-82f6-11ea-922c-36995552d951.png">
 
 ### Why?
-I was missing something that showed something interesting whenever I opened a new tab in my browser. I was looking for something simple (Something that looked like the backdrop images from Chromecast). In my search, I found the [Official Atlas Obscura extension](https://community.atlasobscura.com/t/introducing-the-atlas-obscura-chrome-extension/31566)
+I was missing something that showed something interesting whenever I opened a new tab in my browser.
+
+I was looking for something simple:
+- Something that looked like the backdrop images from Chromecast.
+
+In my search, I found the [Official Atlas Obscura extension](https://community.atlasobscura.com/t/introducing-the-atlas-obscura-chrome-extension/31566)
 
 However, I found out that the experience and performance could be improved, some problems I found were:
 - [Flash of unstyled content](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)
